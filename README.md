@@ -18,14 +18,14 @@
  
   ```json
   {
-  ...
+  
   "compilerOptions": {
-      ...
+    
       "baseUrl": "./",
       "strict": false,
-      ...
+  
   }
-  ...
+  
   }
   ```
  
