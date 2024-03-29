@@ -1,20 +1,16 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { PersonTableComponent } from './components/person-table/person-table.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [],
+  imports: [PersonTableComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   name = "Panagiota";
 
-  person = {
-    givenName: 'P',
-    surName: 'V',
-    age: 1,
-    email: 'aa@.a'
-  }
+  
 }
