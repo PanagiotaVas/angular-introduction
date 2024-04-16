@@ -17,4 +17,9 @@ export class UserService {
     return this.http.post<{msg: string}>(`${API_URL}/register`, user)
                             //^^ what the backend returns
   }
+ 
+  check_duplicate_email(email: string) {
+    return this.http.get<{msg: string}>(`${API_URL}/check_duplicate_email/${email}`)   // due to the implementation of the backend!!!
+  }
+
 }
