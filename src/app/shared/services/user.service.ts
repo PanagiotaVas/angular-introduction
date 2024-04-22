@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, effect, inject, signal } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { Credentials, LogedInUser, User } from '../interface/user';
+import { Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 
 const API_URL = `${environment.apiURL}/user` 
 
@@ -16,7 +18,19 @@ export class UserService {
   user = signal<LogedInUser | null>(null)
         //^^^ like observables,      ^^ initialized as null
 
+  router: Router = inject(Router)
+
   constructor() {
+    // DOES NOT WORK
+    // const access_token = localStorage.getItem('access_token')
+    // const decodedTokenSubject = jwtDecode(access_token).sub as unknown as LogedInUser
+    // if (access_token) {
+    //   this.user.set({
+    //     fullname: decodedTokenSubject.fullname,
+    //     email: decodedTokenSubject.email
+    //   })
+    // }   // if you have a valid token, να φανεί ποιος είσαι
+
     effect(() => {
       if(this.user()) {
         console.log('User log in', this.user().fullname)
@@ -38,6 +52,13 @@ export class UserService {
   loginUser(credentials: Credentials) {
     return this.http.post<{access_token: string}>(`${API_URL}/login`, credentials)
   }
+
+  logoutUser() {
+    this.user.set(null)
+    localStorage.removeItem('access_token')
+    this.router.navigate(['login'])
+  }
+
 
 
 }
