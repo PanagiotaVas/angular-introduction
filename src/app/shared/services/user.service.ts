@@ -21,15 +21,16 @@ export class UserService {
   router: Router = inject(Router)
 
   constructor() {
-    // DOES NOT WORK
-    // const access_token = localStorage.getItem('access_token')
-    // const decodedTokenSubject = jwtDecode(access_token).sub as unknown as LogedInUser
-    // if (access_token) {
-    //   this.user.set({
-    //     fullname: decodedTokenSubject.fullname,
-    //     email: decodedTokenSubject.email
-    //   })
-    // }   // if you have a valid token, να φανεί ποιος είσαι
+    // άκυρο, είναι λάθος η λογική!
+    const access_token = localStorage.getItem('access_token')
+
+    if (access_token) {
+      const decodedTokenSubject = jwtDecode(access_token).sub as unknown as LogedInUser
+      this.user.set({
+        fullname: decodedTokenSubject.fullname,
+        email: decodedTokenSubject.email
+      })
+    }   // if you have a valid token, να φανεί ποιος είσαι
 
     effect(() => {
       if(this.user()) {
