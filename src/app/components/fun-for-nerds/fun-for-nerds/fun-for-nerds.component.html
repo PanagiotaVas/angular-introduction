@@ -1,0 +1,16 @@
+<!-- <p>fun-for-nerds works!</p> -->
+
+
+<div class="container mt-5">
+    <div class="d-flex flex-column gap-2">
+        <div class="alert alert-primary text-center fw-bold">
+            Fun for nerds!
+        </div>
+        <app-word-input (partialWord)="onPartialWord($event)" (word)="onWord($event)"></app-word-input>
+                                            <!-- ^^ the 2 outputs of inpit word component -->
+        <div class="d-flex justify-content-between gap-2">
+            <app-odd-length [partialWord]="partialOddWord" [words]="oddLengthWords"></app-odd-length>
+            <app-even-length [partialWord]="partialEvenWord" [words]="evenLengthWords"></app-even-length>
+        </div>
+    </div>
+</div>
