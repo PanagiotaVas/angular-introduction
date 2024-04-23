@@ -15,7 +15,7 @@ export class WordInputComponent {
 
   onInput(event: Event) {
     const input = event.target as HTMLInputElement;
-    this.partialWord.emit;
+    this.partialWord.emit(input.value);
     this.currentWord = input.value;
   }
 
